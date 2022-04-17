@@ -1,13 +1,20 @@
 const { app, BrowserWindow, Menu, Tray } = require("electron");
 const path = require("path");
-const createWindow = () => {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-  });
 
-  win.loadFile("index.html");
-};
+function createWindow() {
+  const mainWindow = new BrowserWindow({
+    width: 300,
+    height: 150,
+    frame: false,
+    vibrancy: "medium-light",
+    visualEffectState: "active",
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
+  mainWindow.setPosition(1140, 0);
+  mainWindow.loadURL("http://localhost:3000/");
+}
 
 let tray = null;
 
@@ -22,4 +29,12 @@ app.whenReady().then(() => {
   tray.setToolTip("This is my application.");
   tray.setContextMenu(contextMenu);
   createWindow();
+});
+
+app.on("activate", function () {
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
+});
+
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") app.quit();
 });

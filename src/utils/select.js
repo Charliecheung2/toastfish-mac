@@ -182,7 +182,7 @@ class DateBase {
 
   getKanaProgress() {
     let countList = this.db.all("select * from count where bookName = 'Goin'");
-    return countList[0], current;
+    return countList[0].current;
   }
 
   getTwoKanaRandomWords(currentWord) {

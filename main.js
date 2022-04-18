@@ -10,6 +10,8 @@ function createWindow() {
     visualEffectState: "active",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false,
     },
   });
   mainWindow.setPosition(1140, 0);

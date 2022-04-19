@@ -1,9 +1,9 @@
 import "./App.css";
 import { Choice, Home, Notice, Remember } from "./page";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 function App() {
-  useEffect(() => {
+  /*useEffect(() => {
     const selectDb = new window.database.Select("CET4_1", 20);
 
     //获取当前词书和单词数目
@@ -29,24 +29,16 @@ function App() {
 
     //随机获取n个单词
     console.log(selectDb.getRandomWords(2));
-  });
+  });*/
 
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/choice" exact>
-          <Choice />
-        </Route>
-        <Route path="/notice" exact>
-          <Notice />
-        </Route>
-        <Route path="/remember" exact>
-          <Remember />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" exact element={<Home />}></Route>
+        <Route path="/choice" element={<Choice />}></Route>
+        <Route path="/notice" element={<Notice />}></Route>
+        <Route path="/remember" element={<Remember />}></Route>
+      </Routes>
     </Router>
   );
 }

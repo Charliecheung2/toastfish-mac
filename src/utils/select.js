@@ -42,6 +42,7 @@ class DateBase {
   //获取当前词书和背单词数
   getBookNameAndNumber() {
     let global = this.db.prepare("select * from Global").all();
+    console.log(global);
     this.TABLE_NAME = global[0].currentBookName;
     this.WORD_NUMBER = global[0].currentWordNumber;
   }

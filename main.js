@@ -16,10 +16,12 @@ function createWindow() {
   });
   mainWindow.setPosition(1140, 0);
   mainWindow.loadURL("http://localhost:3000/");
+  mainWindow.webContents.openDevTools(); //TODO:默认打开调试窗口，应该在env文件增加变量判断，正式版则不需要打开
 }
 
 let tray = null;
 
+app.dock.isVisible = false;
 app.whenReady().then(() => {
   // tray = new Tray(path.join(__dirname, "fish.png"));
   // const contextMenu = Menu.buildFromTemplate([

@@ -1,10 +1,9 @@
 const path = require("path");
-var sqlite3 = require("sqlite3").verbose();
-
+const sqlite3 = require("better-sqlite3");
 var db = null;
 
 const connect = () => {
-  db = new sqlite3.Database(path.resolve(__dirname, "../assets/db/inami.db"));
+  db = new sqlite3(path.resolve(__dirname, "../assets/db/inami.db"));
   return db;
 };
 

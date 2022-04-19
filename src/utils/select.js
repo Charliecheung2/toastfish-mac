@@ -21,36 +21,29 @@ class DateBase {
 
   //更新背过的单词的纪录
   updateCount() {
-    let countList = [];
-    this.db.all("select * from Count", (e, rows) => {
-      countList = rows;
-      countList.forEach((book) => {
-        if (book.bookName === this.TABLE_NAME) {
-          const count = book.current + 1;
-          console.log(this.TABLE_NAME);
-          if (book.bookName === "Goin") {
-            count %= 104;
-          } // TODO:这里余104待办
-          const command =
-            "UPDATE Count SET current = " +
-            count +
-            " WHERE bookName = '" +
-            this.TABLE_NAME +
-            "'";
-          this.db.exec(command);
-        }
-      });
+    let countList = this.db.prepare("select * from Count").all();
+    countList.forEach((book) => {
+      if (book.bookName === this.TABLE_NAME) {
+        const count = book.current + 1;
+        if (book.bookName === "Goin") {
+          count %= 104;
+        } // TODO:这里余104待办
+        const command =
+          "UPDATE Count SET current = " +
+          count +
+          " WHERE bookName = '" +
+          this.TABLE_NAME +
+          "'";
+        this.db.exec(command);
+      }
     });
   }
 
   //获取当前词书和背单词数
   getBookNameAndNumber() {
-    let global = [];
-    this.db.all("select * from Global", (e, rows) => {
-      global = rows;
-      this.TABLE_NAME = global[0].currentBookName;
-      this.WORD_NUMBER = global[0].currentWordNumber;
-    });
+    let global = this.db.prepare("select * from Global").all();
+    this.TABLE_NAME = global[0].currentBookName;
+    this.WORD_NUMBER = global[0].currentWordNumber;
   }
 
   //更改词书名字
@@ -67,31 +60,22 @@ class DateBase {
 
   //查询当前单词表的当前进度
   selectCount() {
-    return new Promise((resolve, reject) => {
-      this.db.all("select * from Count", (e, rows) => {
-        if (e) reject(e);
-        let result = rows.map((book) => {
-          return { current: book.current, number: book.number };
-        });
-        resolve(result);
-      });
+    let result = [];
+    result = this.db.prepare("select * from Count").all();
+    result = result.map((book) => {
+      return { current: book.current, number: book.number };
     });
+    return result;
   }
 
   //选择某本词书，默认CET4
   selectWordList(TABLE_NAME = "CET4_1") {
-    return new Promise((resolve, reject) => {
-      this.db.all("select * from " + TABLE_NAME, (err, rows) => {
-        if (err) resolve(err);
-        this.allWordList = rows;
-        resolve(true);
-      });
-    });
+    this.allWordList = this.db.prepare("select * from " + TABLE_NAME).all();
   }
 
   //随机选择number个单词
-  async getRandomWordList(number) {
-    await this.selectWordList();
+  getRandomWordList(number) {
+    this.selectWordList();
     let wordList = [];
     let result = [];
 
@@ -114,26 +98,26 @@ class DateBase {
       result.push(allWordArray[index]); // TODO:这里可优化
       allWordArray.splice(index, 1);
     }
-    return Promise.resolve(result);
+    return result;
   }
 
   //随机获取两个单词，作为错误答案
-  async getRandomWords(number) {
+  getRandomWords(number) {
     let result = [];
-    await this.selectWordList();
+    this.selectWordList();
 
     for (let i = 0; i < number; i++) {
       let index = Math.floor(Math.random() * this.allWordList.length);
-      result.push(this.allWordList.splice(index, 1));
+      result.push(this.allWordList.splice(index, 1)[0]);
     }
-    return Promise.resolve(result);
+    return result;
   }
 
   //获取日语单词书的所有单词
   selectJpWordList() {
-    this.db.all("select * from " + this.TABLE_NAME, (e, rows) => {
-      this.allWordList = rows;
-    });
+    this.allJpWordList = this.db
+      .prepare("select * from " + this.TABLE_NAME)
+      .all();
   }
 
   //从日语中随机选择number个单词
@@ -176,12 +160,14 @@ class DateBase {
   }
 
   getKanaList() {
-    let allKanaList = this.db.all("select * from ", this.TABLE_NAME);
+    let allKanaList = this.db.prepare("select * from ", this.TABLE_NAME).all();
     return allKanaList;
   }
 
   getKanaProgress() {
-    let countList = this.db.all("select * from count where bookName = 'Goin'");
+    let countList = this.db
+      .prepare("select * from count where bookName = 'Goin'")
+      .all();
     return countList[0].current;
   }
 

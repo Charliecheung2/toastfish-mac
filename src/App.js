@@ -2,7 +2,6 @@ import "./App.css";
 import { Choice, Home, Notice, Remember } from "./page";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
-console.log(window.sayHello);
 function App() {
   useEffect(() => {
     const selectDb = new window.database.Select("CET4_1", 20);
@@ -20,24 +19,16 @@ function App() {
     selectDb.updateNumber("30");
 
     //查询进度
-    selectDb.selectCount().then((res) => {
-      console.log(res);
-    });
+    console.log("2", selectDb.selectCount());
 
     //更改词书
-    selectDb.selectWordList("CET6_1").then(() => {
-      console.log(selectDb.allWordList);
-    });
+    selectDb.selectWordList("CET6_1");
 
     //随机获取n个单词
-    selectDb.getRandomWordList(3).then((res) => {
-      console.log(res);
-    });
+    console.log(selectDb.getRandomWordList(3));
 
     //随机获取n个单词
-    selectDb.getRandomWords(2).then((res) => {
-      console.log(res);
-    });
+    console.log(selectDb.getRandomWords(2));
   });
 
   return (

@@ -1,5 +1,7 @@
+coverage/
 node_modules/
 build/
 .vscode
 .DS_Store
+package-lock.json
 .eslintrc.js

@@ -1,17 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMyContext } from "../context";
 
 const Home = () => {
-  const [book, setBook] = useState("CET4_1");
-  const [count, setCount] = useState(10);
-
-  useEffect(() => {
-    const selectDb = new window.database.Select(book, count);
-    // selectDb.getBookNameAndNumber();
-    console.log(selectDb.TABLE_NAME);
-    console.log(selectDb.WORD_NUMBER);
-  }, [book, count]);
+  console.log("useMyContext", useMyContext());
+  const { book, count, handleCount } = useMyContext();
+  let navigate = useNavigate();
 
   return (
     <div>
@@ -21,7 +15,8 @@ const Home = () => {
         id="todoCount"
         value={count}
         onChange={(e) => {
-          setCount(e.target.value);
+          handleCount(e);
+          navigate("/remember");
         }}
       >
         <option value="5">5</option>
@@ -29,9 +24,9 @@ const Home = () => {
         <option value="15">15</option>
         <option value="20">20</option>
       </select>
-      <Link to="/remember" onClick={() => console.log("click")}>
+      {/* <Link to="/remember" onClick={() => console.log("click")}>
         start
-      </Link>
+      </Link> */}
     </div>
   );
 };

@@ -10,13 +10,22 @@ class DateBase {
   }
 
   //标记单词已背过
-  updateWord(wordRank) {
+  updateWord(wordRank, status) {
     const command =
       "UPDATE " +
       this.TABLE_NAME +
-      " SET status = 1 WHERE wordRank = " +
+      " SET status = " +
+      status +
+      " WHERE wordRank = " +
       wordRank;
     this.db.exec(command);
+  }
+
+  getWordByRank(rank) {
+    let word = this.db
+      .prepare("select * from CET4_1 where wordRank = " + rank)
+      .all();
+    return word[0];
   }
 
   //更新背过的单词的纪录

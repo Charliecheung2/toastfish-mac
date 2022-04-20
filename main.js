@@ -1,7 +1,6 @@
 const { app, BrowserWindow, Menu, Tray } = require("electron");
 const path = require("path");
-console.log(path.join(__dirname, "preload.js"));
-function createWindow() {
+function createWindow(left) {
   const mainWindow = new BrowserWindow({
     width: 300,
     height: 150,
@@ -14,7 +13,7 @@ function createWindow() {
       contextIsolation: false,
     },
   });
-  mainWindow.setPosition(1140, 0);
+  mainWindow.setPosition(left, 0);
   mainWindow.loadURL("http://localhost:3000/");
   mainWindow.webContents.openDevTools(); //TODO:默认打开调试窗口，应该在env文件增加变量判断，正式版则不需要打开
 }
@@ -32,7 +31,12 @@ app.whenReady().then(() => {
   // ]);
   // tray.setToolTip("This is my application.");
   // tray.setContextMenu(contextMenu);
-  createWindow();
+
+  const { screen } = require("electron");
+
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width } = primaryDisplay.workAreaSize;
+  createWindow(width - 300);
 });
 
 app.on("activate", function () {

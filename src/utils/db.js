@@ -7,11 +7,6 @@ const connect = () => {
   return db;
 };
 
-const close = (db) => {
-  db.close();
-};
-
 module.exports = {
-  close,
   connect,
 };

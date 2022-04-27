@@ -15,7 +15,7 @@ it("标记单词为背过", () => {
   db.updateWord(100, 1);
   let word = db.getWordByRank(100);
   expect(word.status).toEqual(1);
-  db.updateWord(100, 0);
-  word = db.getWordByRank(100);
-  expect(word.status).toEqual(0);
+  // db.updateWord(100, 0);
+  // word = db.getWordByRank(100);
+  // expect(word.status).toEqual(0);
 });

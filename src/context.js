@@ -1,22 +1,45 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 
-// const initState = {
-//   count: 10,
-//   book: "CET4_1",
-// };
 const Context = React.createContext();
 
 const ContextProvider = ({ children }) => {
   const [count, setCount] = useState(10);
   const [book, setBook] = useState("CET4_1");
-  const selectDb = new window.database.Select(book, count);
+  const [selectDb, setSelectDb] = useState(null);
+  const [wordList, setWordList] = useState([]);
 
   const handleCount = (e) => {
     setCount(e.target.value);
   };
 
+  const createWordList = (count) => {
+    let db = new window.database.Select(book, count);
+    setSelectDb(db);
+    let list = db.getRandomWordList(count);
+    setWordList(list);
+  };
+
+  const handleWordList = (wordRank) => {
+    let newList = wordList.map((word) => {
+      if (word.wordRank === wordRank) {
+        word.status = 1;
+      }
+      return word;
+    });
+    setWordList(newList);
+  };
+
   return (
-    <Context.Provider value={{ book, count, handleCount, selectDb }}>
+    <Context.Provider
+      value={{
+        count,
+        selectDb,
+        wordList,
+        handleCount,
+        handleWordList,
+        createWordList,
+      }}
+    >
       {children}
     </Context.Provider>
   );

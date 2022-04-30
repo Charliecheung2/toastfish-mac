@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
+import confetti from "canvas-confetti";
 
 const Choice = () => {
   const { wordList, selectDb } = useMyContext();
@@ -12,7 +13,6 @@ const Choice = () => {
     wordList.filter((i) => i.status === 0)
   );
   const navigate = useNavigate();
-  let correctAnswer = filterList[index].headWord;
 
   useEffect(() => {
     let incorrectWords = selectDb.getRandomWords(2);
@@ -23,6 +23,7 @@ const Choice = () => {
       }
     }
     //打乱答案顺序
+    let correctAnswer = filterList[index].headWord;
     let randomIndex = Math.floor(Math.random() * 3);
     let shuffled = incorrectWords.map((i) => i.headWord);
     shuffled.splice(randomIndex, 0, correctAnswer);
@@ -30,20 +31,26 @@ const Choice = () => {
   }, [index]);
 
   const handleClick = (word) => {
-    if (index >= filterList.length) {
-      setStatus(true);
-      return;
-    } else {
-      //验证答案
-      if (word === correctAnswer) {
-        setIndex(index + 1);
+    //验证答案（待写改数据库Status）
+    let correctAnswer = filterList[index].headWord;
+    if (word === correctAnswer) {
+      //答对
+      if (index >= filterList.length - 1) {
+        setStatus(true);
       } else {
-        setShowAnswer(true);
-        setTimeout(() => {
+        setIndex(index + 1);
+      }
+    } else {
+      //答错
+      setShowAnswer(true);
+      setTimeout(() => {
+        if (index >= filterList.length - 1) {
+          setStatus(true);
+        } else {
           setIndex(index + 1);
           setShowAnswer(false);
-        }, 2000);
-      }
+        }
+      }, 2000);
     }
   };
 
@@ -62,21 +69,21 @@ const Choice = () => {
   return (
     <>
       {status ? (
-        "全部通过！"
+        <div>全部通过！</div>
       ) : (
         <div>
           <div>{filterList[index].tranCN}</div>
           <div>
             {answers.map((word, index) => {
               return (
-                <button onClick={() => handleClick(word)}>{`${
+                <button key={index} onClick={() => handleClick(word)}>{`${
                   index + 1
                 }. ${word}`}</button>
               );
             })}
           </div>
           {showAnswer ? (
-            <div>{`答错了。正确答案是： ${correctAnswer}`}</div>
+            <div>{`答错了。正确答案是： ${filterList[index].headWord}`}</div>
           ) : null}
         </div>
       )}

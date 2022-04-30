@@ -1,7 +1,7 @@
 import "./App.css";
 import { Choice, Home, Notice, Remember } from "./page";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+
 function App() {
   /*useEffect(() => {
     const selectDb = new window.database.Select("CET4_1", 20);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
+import "../index.scss";
 
 const Home = () => {
   const { count, handleCount, createWordList } = useMyContext();
@@ -17,7 +18,7 @@ const Home = () => {
       <p>这次要背多少个？</p>
       <select name="todoCount" id="todoCount" onChange={handleChange}>
         <option value="null">请选择</option>
-        <option value="5">5</option>
+        <option value="3">3</option>
         <option value="10">10</option>
         <option value="15">15</option>
         <option value="20">20</option>

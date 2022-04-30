@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
-<<<<<<< HEAD
 import Congratulate from "./Congratulate";
-=======
-import confetti from "canvas-confetti";
->>>>>>> 43573fdc0ac517535a415079dd1102b10641da6b
 
 const Choice = () => {
   const { wordList, selectDb, handleWordList } = useMyContext();
@@ -37,12 +33,9 @@ const Choice = () => {
   }, [index]);
 
   const handleClick = (word) => {
-<<<<<<< HEAD
     handleWordList(filterList[index].wordRank);
-=======
     //验证答案（待写改数据库Status）
     let correctAnswer = filterList[index].headWord;
->>>>>>> 43573fdc0ac517535a415079dd1102b10641da6b
     if (word === correctAnswer) {
       //答对
       if (index >= filterList.length - 1) {
@@ -79,11 +72,7 @@ const Choice = () => {
   return (
     <>
       {status ? (
-<<<<<<< HEAD
         <Congratulate />
-=======
-        <div>全部通过！</div>
->>>>>>> 43573fdc0ac517535a415079dd1102b10641da6b
       ) : (
         <div>
           <div>{filterList[index].tranCN}</div>

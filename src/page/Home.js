@@ -1,30 +1,36 @@
 import React from "react";
+import "../App.scss";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
+import { Select } from "antd";
+const { Option } = Select;
 
 const Home = () => {
-  const { count, handleCount, createWordList } = useMyContext();
+  const { handleCount, createWordList } = useMyContext();
   let navigate = useNavigate();
 
-  const handleChange = (e) => {
-    handleCount(e);
-    createWordList(e.target.value);
+  const handleChange = (value) => {
+    handleCount(value);
+    createWordList(value);
     navigate("/remember");
   };
 
   return (
-    <div>
-      <p>这次要背多少个？</p>
-      <select name="todoCount" id="todoCount" onChange={handleChange}>
-        <option value="null">请选择</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-      </select>
-      {/* <Link to="/remember" onClick={() => {}}>
-        start
-      </Link> */}
+    <div className="home-container">
+      <div className="question">这次要背多少个？</div>
+      <Select
+        // defaultValue="null"
+        placeholder="请选择"
+        style={{ width: 120 }}
+        id="todoCount"
+        onChange={handleChange}
+      >
+        {/* <Option value="null">请选择</Option> */}
+        <Option value="2">2</Option>
+        <Option value="10">10</Option>
+        <Option value="15">15</Option>
+        <Option value="20">20</Option>
+      </Select>
     </div>
   );
 };

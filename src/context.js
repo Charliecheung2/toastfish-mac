@@ -8,8 +8,8 @@ const ContextProvider = ({ children }) => {
   const [selectDb, setSelectDb] = useState(null);
   const [wordList, setWordList] = useState([]);
 
-  const handleCount = (e) => {
-    setCount(e.target.value);
+  const handleCount = (value) => {
+    setCount(value);
   };
 
   const createWordList = (count) => {
@@ -19,6 +19,7 @@ const ContextProvider = ({ children }) => {
     setWordList(list);
   };
 
+  //更改单词状态为1
   const handleWordList = (wordRank) => {
     let newList = wordList.map((word) => {
       if (word.wordRank === wordRank) {

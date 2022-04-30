@@ -5,7 +5,7 @@ function createWindow(left) {
     width: 300,
     height: 150,
     frame: false,
-    vibrancy: "medium-light",
+    // vibrancy: "medium-light",
     visualEffectState: "active",
     webPreferences: {
       nodeIntegration: true,

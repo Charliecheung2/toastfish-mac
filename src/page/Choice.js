@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
+import Congratulate from "./Congratulate";
 
 const Choice = () => {
-  const { wordList, selectDb } = useMyContext();
+  const { wordList, selectDb, handleWordList } = useMyContext();
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -13,6 +14,8 @@ const Choice = () => {
   );
   const navigate = useNavigate();
   let correctAnswer = filterList[index].headWord;
+
+  //待添加“开始测试”提醒
 
   useEffect(() => {
     let incorrectWords = selectDb.getRandomWords(2);
@@ -30,20 +33,25 @@ const Choice = () => {
   }, [index]);
 
   const handleClick = (word) => {
-    if (index >= filterList.length) {
-      setStatus(true);
-      return;
-    } else {
-      //验证答案
-      if (word === correctAnswer) {
-        setIndex(index + 1);
+    handleWordList(filterList[index].wordRank);
+    if (word === correctAnswer) {
+      //答对
+      if (index >= filterList.length - 1) {
+        setStatus(true);
       } else {
-        setShowAnswer(true);
-        setTimeout(() => {
+        setIndex(index + 1);
+      }
+    } else {
+      //答错
+      setShowAnswer(true);
+      setTimeout(() => {
+        if (index >= filterList.length - 1) {
+          setStatus(true);
+        } else {
           setIndex(index + 1);
           setShowAnswer(false);
-        }, 2000);
-      }
+        }
+      }, 2000);
     }
   };
 
@@ -62,14 +70,14 @@ const Choice = () => {
   return (
     <>
       {status ? (
-        "全部通过！"
+        <Congratulate />
       ) : (
         <div>
           <div>{filterList[index].tranCN}</div>
           <div>
             {answers.map((word, index) => {
               return (
-                <button onClick={() => handleClick(word)}>{`${
+                <button key={index} onClick={() => handleClick(word)}>{`${
                   index + 1
                 }. ${word}`}</button>
               );

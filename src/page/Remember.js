@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
+import Choice from "./Choice";
 
 const Remember = () => {
   const { count, selectDb, wordList, handleWordList } = useMyContext();
@@ -23,13 +24,7 @@ const Remember = () => {
   return (
     <div>
       {status ? (
-        <div
-          onClick={() => {
-            navigate("/choice");
-          }}
-        >
-          记完了,开始测试。
-        </div>
+        <Choice />
       ) : (
         <>
           <div>

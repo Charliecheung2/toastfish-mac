@@ -8,6 +8,8 @@ In the project directory, you can run:
 
 ### `npm start`
 
+`node_modules/.bin/electron-rebuild -f -w better-sqlite3`
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 

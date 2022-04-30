@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
+<<<<<<< HEAD
 import Congratulate from "./Congratulate";
+=======
+import confetti from "canvas-confetti";
+>>>>>>> 43573fdc0ac517535a415079dd1102b10641da6b
 
 const Choice = () => {
   const { wordList, selectDb, handleWordList } = useMyContext();
@@ -13,7 +17,6 @@ const Choice = () => {
     wordList.filter((i) => i.status === 0)
   );
   const navigate = useNavigate();
-  let correctAnswer = filterList[index].headWord;
 
   //待添加“开始测试”提醒
 
@@ -26,6 +29,7 @@ const Choice = () => {
       }
     }
     //打乱答案顺序
+    let correctAnswer = filterList[index].headWord;
     let randomIndex = Math.floor(Math.random() * 3);
     let shuffled = incorrectWords.map((i) => i.headWord);
     shuffled.splice(randomIndex, 0, correctAnswer);
@@ -33,7 +37,12 @@ const Choice = () => {
   }, [index]);
 
   const handleClick = (word) => {
+<<<<<<< HEAD
     handleWordList(filterList[index].wordRank);
+=======
+    //验证答案（待写改数据库Status）
+    let correctAnswer = filterList[index].headWord;
+>>>>>>> 43573fdc0ac517535a415079dd1102b10641da6b
     if (word === correctAnswer) {
       //答对
       if (index >= filterList.length - 1) {
@@ -70,7 +79,11 @@ const Choice = () => {
   return (
     <>
       {status ? (
+<<<<<<< HEAD
         <Congratulate />
+=======
+        <div>全部通过！</div>
+>>>>>>> 43573fdc0ac517535a415079dd1102b10641da6b
       ) : (
         <div>
           <div>{filterList[index].tranCN}</div>
@@ -84,7 +97,7 @@ const Choice = () => {
             })}
           </div>
           {showAnswer ? (
-            <div>{`答错了。正确答案是： ${correctAnswer}`}</div>
+            <div>{`答错了。正确答案是： ${filterList[index].headWord}`}</div>
           ) : null}
         </div>
       )}

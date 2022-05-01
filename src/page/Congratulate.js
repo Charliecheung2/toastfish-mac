@@ -28,12 +28,12 @@ function Confetti() {
   return (
     <>
       <div
-        className="notice"
+        id="finish"
         onClick={() => {
           navigate("/");
         }}
       >
-        背完啦
+        <span>再来一次</span>
       </div>
       <canvas id="confetti" style={{ top: 0, position: "absolute" }}></canvas>
     </>

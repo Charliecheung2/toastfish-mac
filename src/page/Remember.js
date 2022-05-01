@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../context";
 import Choice from "./Choice";
 
@@ -7,7 +6,6 @@ const Remember = () => {
   const { count, selectDb, wordList, handleWordList } = useMyContext();
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState(false);
-  const navigate = useNavigate();
 
   const handleClick = (tooEasy, wordRank = null) => {
     if (tooEasy) {
@@ -27,20 +25,31 @@ const Remember = () => {
         <Choice />
       ) : (
         <>
-          <div>
-            <div>
-              {wordList[index].headWord}
-              {wordList[index].usphone}
+          <div className="info">
+            <div className="word-container">
+              <span>{wordList[index].headWord}</span>
+              <span>{`[${wordList[index].usphone}]`}</span>
             </div>
-            <div>{wordList[index].tranCN}</div>
-            <div>{wordList[index].phrase}</div>
-            <div>{wordList[index].phraseCN}</div>
+            <div className="tranCN">{wordList[index].tranCN}</div>
+            <div className="phrase-container">
+              <div className="phrase">{wordList[index].phrase}</div>
+              <div className="phraseCN">{wordList[index].phraseCN}</div>
+            </div>
           </div>
-          <button onClick={() => handleClick(false)}>记住了</button>
-          <button onClick={() => handleClick(true, wordList[index].wordRank)}>
-            太简单
-          </button>
-          <button onClick={handleClick}>发音</button>
+          <div className="options-container">
+            <button className="option-btn" onClick={() => handleClick(false)}>
+              记住了
+            </button>
+            <button
+              className="option-btn"
+              onClick={() => handleClick(true, wordList[index].wordRank)}
+            >
+              太简单
+            </button>
+            <button className="pronounce" onClick={handleClick}>
+              发音
+            </button>
+          </div>
         </>
       )}
     </div>

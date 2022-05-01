@@ -19,17 +19,26 @@ const Home = () => {
     <div className="home-container">
       <div className="question">这次要背多少个？</div>
       <Select
-        // defaultValue="null"
         placeholder="请选择"
         style={{ width: 120 }}
         id="todoCount"
+        virtual={false}
+        className="select-class"
+        dropdownClassName="options-class"
         onChange={handleChange}
       >
-        {/* <Option value="null">请选择</Option> */}
-        <Option value="2">2</Option>
-        <Option value="10">10</Option>
-        <Option value="15">15</Option>
-        <Option value="20">20</Option>
+        <Option className="option-class" value="2">
+          2
+        </Option>
+        <Option className="option-class" value="10">
+          10
+        </Option>
+        <Option className="option-class" value="15">
+          15
+        </Option>
+        <Option className="option-class" value="20">
+          20
+        </Option>
       </Select>
     </div>
   );

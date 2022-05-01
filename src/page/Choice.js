@@ -14,9 +14,10 @@ const Choice = () => {
   );
   const navigate = useNavigate();
 
-  //待添加“开始测试”提醒
+  //待添加“开始测试”提醒,或通过样式区分。
 
   useEffect(() => {
+    if (filterList.length === 0) return;
     let incorrectWords = selectDb.getRandomWords(2);
     //排除重复
     for (const i of incorrectWords) {
@@ -33,8 +34,8 @@ const Choice = () => {
   }, [index]);
 
   const handleClick = (word) => {
+    if (showAnswer) return;
     handleWordList(filterList[index].wordRank);
-    //验证答案（待写改数据库Status）
     let correctAnswer = filterList[index].headWord;
     if (word === correctAnswer) {
       //答对
@@ -60,11 +61,14 @@ const Choice = () => {
   if (filterList.length === 0) {
     return (
       <div
+        id="too-easy-page"
         onClick={() => {
           navigate("/");
         }}
       >
-        这些词对你来说太简单了，换一些吧！
+        这些词对你来说太简单了
+        <br />
+        换一些吧！
       </div>
     );
   }
@@ -74,19 +78,21 @@ const Choice = () => {
       {status ? (
         <Congratulate />
       ) : (
-        <div>
-          <div>{filterList[index].tranCN}</div>
-          <div>
+        <div className="choice-page">
+          <div className="question">{filterList[index].tranCN}</div>
+          <div className="answers">
             {answers.map((word, index) => {
               return (
-                <button key={index} onClick={() => handleClick(word)}>{`${
-                  index + 1
-                }. ${word}`}</button>
+                <button
+                  key={index}
+                  onClick={() => handleClick(word)}
+                  className="answer"
+                >{`${word}`}</button>
               );
             })}
           </div>
           {showAnswer ? (
-            <div>{`答错了。正确答案是： ${filterList[index].headWord}`}</div>
+            <div className="boo">{`答错了。正确答案是： ${filterList[index].headWord}`}</div>
           ) : null}
         </div>
       )}

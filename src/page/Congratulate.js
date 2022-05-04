@@ -9,7 +9,7 @@ function randomInRange(min, max) {
 
 function Confetti() {
   const navigate = useNavigate();
-  console.log("a");
+
   useEffect(() => {
     let myCanvas = document.querySelector("#confetti");
     let myConfetti = confetti.create(myCanvas, {

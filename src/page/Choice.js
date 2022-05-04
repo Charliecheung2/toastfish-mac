@@ -14,7 +14,18 @@ const Choice = () => {
   );
   const navigate = useNavigate();
 
-  //待添加“开始测试”提醒,或通过样式区分。
+  //注册快捷键
+  useEffect(() => {
+    function handleKeyPress(event) {
+      document.getElementById(`option-${event.key}`).click();
+    }
+
+    window.addEventListener("keyup", handleKeyPress, true);
+
+    return () => {
+      window.removeEventListener("keyup", handleKeyPress, true);
+    };
+  }, [index]);
 
   useEffect(() => {
     if (filterList.length === 0) return;
@@ -85,6 +96,7 @@ const Choice = () => {
               return (
                 <button
                   key={index}
+                  id={`option-${index + 1}`}
                   onClick={() => handleClick(word)}
                   className="answer"
                 >{`${word}`}</button>

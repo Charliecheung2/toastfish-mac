@@ -19,7 +19,7 @@ const Home = () => {
     <div className="home-container">
       <div className="question">这次要背多少个？</div>
       <Select
-        placeholder="请选择"
+        placeholder="10" //从菜单栏获取默认背词数
         style={{ width: 120 }}
         id="todoCount"
         virtual={false}
@@ -40,6 +40,15 @@ const Home = () => {
           20
         </Option>
       </Select>
+      <div
+        className="start"
+        onClick={() => {
+          createWordList(10);
+          navigate("/remember");
+        }}
+      >
+        开始
+      </div>
     </div>
   );
 };

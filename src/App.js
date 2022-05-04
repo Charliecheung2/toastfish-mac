@@ -30,15 +30,27 @@ function App() {
     console.log(selectDb.getRandomWords(2));
   });*/
 
+  // console.log(window.myAPI);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" exact element={<Home />}></Route>
-        <Route path="/choice" element={<Choice />}></Route>
-        <Route path="/notice" element={<Notice />}></Route>
-        <Route path="/remember" element={<Remember />}></Route>
-      </Routes>
-    </Router>
+    <>
+      <button
+        id="esc"
+        onClick={() => {
+          window.database.quit();
+        }}
+      >
+        <span>✕</span>
+      </button>
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<Home />}></Route>
+          <Route path="/choice" element={<Choice />}></Route>
+          <Route path="/notice" element={<Notice />}></Route>
+          <Route path="/remember" element={<Remember />}></Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 

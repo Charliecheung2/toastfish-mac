@@ -1,4 +1,4 @@
-import { Choice, Home, Notice, Remember } from "./page";
+import { Choice, Home, Remember } from "./page";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -46,7 +46,6 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />}></Route>
           <Route path="/choice" element={<Choice />}></Route>
-          <Route path="/notice" element={<Notice />}></Route>
           <Route path="/remember" element={<Remember />}></Route>
         </Routes>
       </Router>

@@ -1,8 +1,8 @@
-const { app, BrowserWindow } = require("electron");
-
-const handleCount = (count) => {
-  // selectDb.updateNumber(count);
+const handleCount = (menuItem, browserWindow) => {
+  let iniCount = menuItem.label;
+  browserWindow.webContents.send("change-initial-count", iniCount);
 };
+//TODO：强制focus窗口，以及已选的加勾
 
 const trayTemplate = [
   {
@@ -18,10 +18,14 @@ const trayTemplate = [
   {
     label: "默认背词个数",
     submenu: [
-      { label: "5" },
-      { label: "10" },
-      { label: "15" },
-      { label: "20" },
+      {
+        label: "5",
+        type: "radio",
+        click: handleCount,
+      },
+      { label: "10", type: "radio", click: handleCount },
+      { label: "15", type: "radio", click: handleCount },
+      { label: "20", type: "radio", click: handleCount },
     ],
   },
   {
@@ -53,7 +57,7 @@ const trayTemplate = [
   },
   { label: "导入单词" },
   { type: "separator" },
-  { label: "开机启动", submenu: [{ label: "是" }, { label: "否" }] },
+  { label: "开机启动", type: "checkbox", checked: true },
   { label: "使用说明" },
   { label: "退出", role: "quit" },
   { type: "separator" },

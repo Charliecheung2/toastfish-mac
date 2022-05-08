@@ -6,7 +6,7 @@ import { Select } from "antd";
 const { Option } = Select;
 
 const Home = () => {
-  const { handleCount, createWordList } = useMyContext();
+  const { handleCount, createWordList, count } = useMyContext();
   let navigate = useNavigate();
 
   const handleChange = (value) => {
@@ -19,7 +19,7 @@ const Home = () => {
     <div className="home-container">
       <div className="question">这次要背多少个？</div>
       <Select
-        placeholder="10" //从菜单栏获取默认背词数
+        placeholder={count}
         style={{ width: 120 }}
         id="todoCount"
         virtual={false}
@@ -43,7 +43,7 @@ const Home = () => {
       <div
         className="start"
         onClick={() => {
-          createWordList(10);
+          createWordList(count);
           navigate("/remember");
         }}
       >

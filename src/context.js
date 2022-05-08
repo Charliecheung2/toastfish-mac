@@ -1,21 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 const Context = React.createContext();
 
 const ContextProvider = ({ children }) => {
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(null);
   const [book, setBook] = useState("CET4_1");
-  const [selectDb, setSelectDb] = useState(null);
+  const [selectDb, setSelectDb] = useState(window.database.selectDb);
   const [wordList, setWordList] = useState([]);
+
+  useEffect(() => {
+    selectDb.getBookNameAndNumber();
+    let iniCount = selectDb.WORD_NUMBER;
+    setCount(iniCount);
+  }, [selectDb]);
+
+  console.log("context-database", window.database);
 
   const handleCount = (value) => {
     setCount(value);
   };
 
   const createWordList = (count) => {
-    let db = new window.database.Select(book, count);
-    setSelectDb(db);
-    let list = db.getRandomWordList(count);
+    let list = selectDb.getRandomWordList(count);
     setWordList(list);
   };
 

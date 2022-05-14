@@ -86,14 +86,14 @@ class DateBase {
     return result;
   }
 
-  //选择某本词书，默认CET4
-  selectWordList(TABLE_NAME = "CET4_1") {
+  //选择某本词书，默认CET6
+  selectWordList(TABLE_NAME = "CET6_3") {
     this.allWordList = this.db.prepare("select * from " + TABLE_NAME).all();
   }
 
   //随机选择number个单词
-  getRandomWordList(number) {
-    this.selectWordList();
+  getRandomWordList(number, book) {
+    this.selectWordList(book);
     let wordList = [];
     let result = [];
 
@@ -120,9 +120,9 @@ class DateBase {
   }
 
   //随机获取两个单词，作为错误答案
-  getRandomWords(number) {
+  getRandomWords(number, book) {
     let result = [];
-    this.selectWordList();
+    this.selectWordList(book);
 
     for (let i = 0; i < number; i++) {
       let index = Math.floor(Math.random() * this.allWordList.length);

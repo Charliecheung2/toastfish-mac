@@ -4,24 +4,23 @@ const Context = React.createContext();
 
 const ContextProvider = ({ children }) => {
   const [count, setCount] = useState(null);
-  const [book, setBook] = useState("CET4_1");
   const [selectDb, setSelectDb] = useState(window.database.selectDb);
   const [wordList, setWordList] = useState([]);
 
   useEffect(() => {
     selectDb.getBookNameAndNumber();
+    // 更改默认背词数
     let iniCount = selectDb.WORD_NUMBER;
     setCount(iniCount);
   }, [selectDb]);
-
-  console.log("context-database", window.database);
 
   const handleCount = (value) => {
     setCount(value);
   };
 
   const createWordList = (count) => {
-    let list = selectDb.getRandomWordList(count);
+    selectDb.getBookNameAndNumber();
+    let list = selectDb.getRandomWordList(count, selectDb.TABLE_NAME);
     setWordList(list);
   };
 

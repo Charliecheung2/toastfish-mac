@@ -177,6 +177,7 @@ body {
   }
 
   .tranCN {
+    @include x-overflow;
     margin: -3px 0 2px 0;
   }
 
@@ -193,16 +194,24 @@ body {
   height: 150px;
   padding: 8px 5px 8px 10px;
   .question {
-    @include x-overflow;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    height: 45px;
-    line-height: 45px;
+    height: 60px;
     width: 280px;
+    padding-left: 3px;
+    display: flex;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    span {
+      margin: auto 0;
+    }
   }
   .answers {
     display: flex;
-    height: 100px-32px;
+    height: 85px-32px;
+    padding-top: 5px;
     width: 280px;
     overflow: hidden;
     justify-content: space-around;

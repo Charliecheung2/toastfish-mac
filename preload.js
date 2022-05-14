@@ -7,8 +7,11 @@ const selectDb = new Select("CET4_1", 20);
 let iniCount;
 ipcRenderer.on("change-initial-count", (event, message) => {
   iniCount = message;
-  console.log("preload", iniCount);
   selectDb.updateNumber(iniCount);
+});
+
+ipcRenderer.on("change-initial-book", (event, message) => {
+  selectDb.updateBookName(message);
 });
 
 window.database = {

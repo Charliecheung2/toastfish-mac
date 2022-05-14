@@ -2825,7 +2825,7 @@
   "resolved" "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz"
   "version" "5.2.0"
 
-"antd@^4.20.1":
+"antd@^4.20.2":
   "integrity" "sha512-b+Gq1EY8LmcS/ARei/dGI0bWQlJ/j3f3oJ6XjM+ryyT5YWxvf7X3mGc++bTGuLmjn6+/icRL1zItIgcvplcomg=="
   "resolved" "https://registry.npmjs.org/antd/-/antd-4.20.2.tgz"
   "version" "4.20.2"

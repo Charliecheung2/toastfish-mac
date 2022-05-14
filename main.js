@@ -31,8 +31,8 @@ function createWindow(left) {
   mainWindow.loadURL("http://localhost:3000/");
   mainWindow.webContents.openDevTools(); //TODO:默认打开调试窗口，应该在env文件增加变量判断，正式版则不需要打开
 
-  //快捷键esc
-  const ret = globalShortcut.register("esc", () => {
+  //全局快捷键
+  const ret = globalShortcut.register("Cmd+M", () => {
     mainWindow.close();
   });
   if (!ret) {
@@ -40,11 +40,14 @@ function createWindow(left) {
   }
 }
 
-let tray = null;
-
+app.setLoginItemSettings({
+  openAtLogin: true, // 开机启动
+  openAsHidden: true,
+});
 app.dock.isVisible = false;
+
 app.whenReady().then(() => {
-  tray = new Tray(path.join(__dirname, "./src/trayTemplate.png"));
+  let tray = new Tray(path.join(__dirname, "./src/trayTemplate.png"));
   const contextMenu = Menu.buildFromTemplate(trayTemplate);
   tray.setToolTip("摸摸鱼 背背词");
   tray.setContextMenu(contextMenu);

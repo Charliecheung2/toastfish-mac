@@ -29,11 +29,11 @@ const Choice = () => {
 
   useEffect(() => {
     if (filterList.length === 0) return;
-    let incorrectWords = selectDb.getRandomWords(2);
+    let incorrectWords = selectDb.getRandomWords(2, selectDb.TABLE_NAME);
     //排除重复
     for (const i of incorrectWords) {
       if (i.wordRank === filterList[index].wordRank) {
-        incorrectWords = selectDb.getRandomWords(2);
+        incorrectWords = selectDb.getRandomWords(selectDb.TABLE_NAME);
       }
     }
     //打乱答案顺序
@@ -90,7 +90,9 @@ const Choice = () => {
         <Congratulate />
       ) : (
         <div className="choice-page">
-          <div className="question">{filterList[index].tranCN}</div>
+          <div className="question">
+            <span>{filterList[index].tranCN}</span>
+          </div>
           <div className="answers">
             {answers.map((word, index) => {
               return (

@@ -7,12 +7,13 @@ const Remember = () => {
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState(false);
 
+  console.log("wordList", wordList);
+
   //注册快捷键
   useEffect(() => {
     function handleKeyPress(event) {
       document.getElementById(`option-${event.key}`).click();
     }
-
     window.addEventListener("keyup", handleKeyPress, true);
 
     return () => {

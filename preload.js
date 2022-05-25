@@ -12,6 +12,7 @@ ipcRenderer.on("change-initial-count", (event, message) => {
 
 ipcRenderer.on("change-initial-book", (event, message) => {
   selectDb.updateBookName(message);
+  // window.location.hash = "/";
 });
 
 window.database = {

@@ -7,7 +7,7 @@ const Remember = () => {
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState(false);
 
-  console.log("wordList", wordList);
+  console.log("wordList", wordList[0]);
 
   //注册快捷键
   useEffect(() => {

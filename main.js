@@ -2,6 +2,9 @@ const { trayTemplate, menuTemplate } = require("./src/utils/menu");
 const { app, BrowserWindow, Menu, Tray, globalShortcut } = require("electron");
 const { ipcMain } = require("electron");
 const path = require("path");
+const Select = require("./src/utils/select");
+const selectDb = new Select(20);
+selectDb.getBookNameAndNumber();
 
 function createWindow(left) {
   const mainWindow = new BrowserWindow({
@@ -46,12 +49,15 @@ app.setLoginItemSettings({
 });
 app.dock.isVisible = false;
 
-app.whenReady().then(() => {
+app.whenReady().then((app) => {
   let tray = new Tray(path.join(__dirname, "./src/trayTemplate.png"));
   const contextMenu = Menu.buildFromTemplate(trayTemplate);
+  const book = selectDb.TABLE_NAME;
+  let current = contextMenu.getMenuItemById(book);
+  current.checked = true;
+
   tray.setToolTip("摸摸鱼 背背词");
   tray.setContextMenu(contextMenu);
-
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
 

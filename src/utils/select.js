@@ -1,8 +1,8 @@
 const db = require("./db");
 
 class DateBase {
-  constructor(TABLE_NAME, WORD_NUMBER) {
-    this.TABLE_NAME = TABLE_NAME;
+  constructor(WORD_NUMBER) {
+    this.TABLE_NAME = "CET4_1";
     this.WORD_NUMBER = WORD_NUMBER;
     this.db = db.connect();
     this.allWordList = null;

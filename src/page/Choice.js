@@ -4,7 +4,7 @@ import { useMyContext } from "../context";
 import Congratulate from "./Congratulate";
 
 const Choice = () => {
-  const { wordList, selectDb, handleWordList } = useMyContext();
+  const { wordList, selectDb } = useMyContext();
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -13,6 +13,8 @@ const Choice = () => {
     wordList.filter((i) => i.status === 0)
   );
   const navigate = useNavigate();
+
+  console.log("wordList222", wordList);
 
   //注册快捷键
   useEffect(() => {
@@ -46,10 +48,11 @@ const Choice = () => {
 
   const handleClick = (word) => {
     if (showAnswer) return;
-    handleWordList(filterList[index].wordRank);
     let correctAnswer = filterList[index].headWord;
     if (word === correctAnswer) {
       //答对
+      selectDb.updateWord(filterList[index].wordRank, 1);
+      selectDb.updateCount();
       if (index >= filterList.length - 1) {
         setStatus(true);
       } else {

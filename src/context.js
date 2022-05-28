@@ -24,7 +24,7 @@ const ContextProvider = ({ children }) => {
     setWordList(list);
   };
 
-  //更改单词状态为1
+  //更改本地单词状态为1（未写入数据库）
   const handleWordList = (wordRank) => {
     let newList = wordList.map((word) => {
       if (word.wordRank === wordRank) {

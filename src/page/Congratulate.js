@@ -21,7 +21,6 @@ function Confetti() {
       origin: { y: 1 },
       decay: 0.8,
     });
-
     return () => {};
   }, []);
 

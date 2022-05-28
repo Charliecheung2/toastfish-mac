@@ -7,8 +7,6 @@ const Remember = () => {
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState(false);
 
-  console.log("wordList", wordList[0]);
-
   //注册快捷键
   useEffect(() => {
     function handleKeyPress(event) {
@@ -24,6 +22,7 @@ const Remember = () => {
   const handleClick = (tooEasy, wordRank = null) => {
     if (tooEasy) {
       selectDb.updateWord(wordRank, 1);
+      selectDb.updateCount();
       handleWordList(wordRank);
     }
     if (index === count - 1) {

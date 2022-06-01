@@ -82,7 +82,6 @@ const trayTemplate = [
         id: "IELTS_3",
         click: handleBook,
         type: "radio",
-        // checked: (submenu) => submenu.id === book,
       },
       {
         label: `TOEFL词汇(${progress[7].current}/${progress[7].number})`,

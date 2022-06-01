@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useMyContext } from "../context";
 import Choice from "./Choice";
+import { EngRemeber, GoinRemember, JpRemember } from "../component";
 
 const Remember = () => {
   const { count, selectDb, wordList, handleWordList } = useMyContext();
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState(false);
+  const [book, setBook] = useState("");
 
   //注册快捷键
   useEffect(() => {
@@ -18,6 +20,11 @@ const Remember = () => {
       window.removeEventListener("keyup", handleKeyPress, true);
     };
   }, [index]);
+
+  useEffect(() => {
+    selectDb.getBookNameAndNumber();
+    setBook(selectDb.TABLE_NAME);
+  }, []);
 
   const handleClick = (tooEasy, wordRank = null) => {
     if (tooEasy) {
@@ -32,43 +39,18 @@ const Remember = () => {
     setIndex(index + 1);
   };
 
+  if (status) {
+    return <Choice />;
+  }
+
   return (
     <div>
-      {status ? (
-        <Choice />
+      {book === "Goin" ? (
+        <GoinRemember index={index} wordList={wordList} handleClick={handleClick} />
+      ) : book === "StdJp_Mid" ? (
+        <JpRemember index={index} wordList={wordList} handleClick={handleClick} />
       ) : (
-        <>
-          <div className="info">
-            <div className="word-container">
-              <span>{wordList[index].headWord}</span>
-              <span>{`[${wordList[index].usphone}]`}</span>
-            </div>
-            <div className="tranCN">{wordList[index].tranCN}</div>
-            <div className="phrase-container">
-              <div className="phrase">{wordList[index].phrase}</div>
-              <div className="phraseCN">{wordList[index].phraseCN}</div>
-            </div>
-          </div>
-          <div className="options-container">
-            <button
-              className="option-btn"
-              onClick={() => handleClick(false)}
-              id="option-1"
-            >
-              记住了
-            </button>
-            <button
-              className="option-btn"
-              onClick={() => handleClick(true, wordList[index].wordRank)}
-              id="option-2"
-            >
-              太简单
-            </button>
-            <button className="pronounce" onClick={handleClick} id="option-3">
-              发音
-            </button>
-          </div>
-        </>
+        <EngRemeber index={index} wordList={wordList} handleClick={handleClick} />
       )}
     </div>
   );

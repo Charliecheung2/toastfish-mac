@@ -22,22 +22,22 @@
 
 1. 选择词库：
 <div align='center'>
-<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/select.png" width = "400" alt="select" align='center' />
+<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/select.png" width = "400" alt="select"/>
 </div>
 
 2. 设置背诵单词数量：
 <div align='center'>
-<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/start.png" width = "400" alt="start" align=center />
+<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/start.png" width = "50%" alt="start" />
 </div>
 
 3. 开始记忆：
 <div align='center'>
-<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/remember.png" width = "400" alt="remember" align=center />
+<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/remember.png" width = "400" alt="remember" />
 </div>
 
 4. 背完之后会有测试：
 <div align='center'>
-<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/choose.png" width = "400" alt="choose" align=center />
+<img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/choose.png" width = "400" alt="choose" />
 </div>
 
 ### 背诵记录

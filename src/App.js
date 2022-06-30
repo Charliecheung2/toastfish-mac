@@ -32,6 +32,8 @@ function App() {
 
   // console.log(window.myAPI);
 
+  //node_modules/.bin/electron-rebuild -f -w better-sqlite3
+
   return (
     <>
       <button

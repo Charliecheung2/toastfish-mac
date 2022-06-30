@@ -1,8 +1,6 @@
-`node_modules/.bin/electron-rebuild -f -w better-sqlite3`
-
 <div align="center">
 
-# MOYU
+# <font color=#58B2DC>MOYU</font>
 
 #### 这是一个轻量、低调的背单词软件，可以让你在上班、上课等恶劣环境下安全隐蔽地背单词。
 
@@ -10,22 +8,26 @@
 
 </div>
 
-## 使用说明
+---
+
+## <font color=#58B2DC>使用说明</font>
 
 ### 快捷键
 
-esc 退出程序（焦点在 APP 上时）
-command+M 退出程序（无需聚焦在 APP 上）
-使用数字 1 2 3 快捷答题
-
----
+- esc 退出程序（焦点在 APP 上时）
+- command+M 退出程序（无需聚焦在 APP 上）
+- 使用数字 1 2 3 快捷答题
 
 ### 基本流程
 
-1. 选择词库：（TODO：补充图片示例）
+1. 选择词库：
+   ![select]()
 2. 设置背诵单词数量：
+   ![start]()
 3. 开始记忆：
+   ![remember]()
 4. 背完之后会有测试：
+   ![choose]()
 
 ### 背诵记录
 
@@ -55,7 +57,7 @@ A: 可以提 Issue，将问题或建议提供给我们。
 Q: 软件收费吗？  
 A: 软件完全开源且免费。
 
-## 下载与安装
+## <font color=#58B2DC>下载与安装</font>
 
 1. 可以去网盘下载，下载双击安装 MoyuSetup.exe 即可。
 
@@ -66,12 +68,10 @@ A: 软件完全开源且免费。
 
 2. 也可以去项目 Tag 处下载 Release 版本，解压即可免安装运行。
 
-## 编译源码
+## <font color=#58B2DC>编译源码</font>
 
 请在 cmd 中运行
 
 ```bash
 git clone https://github.com/Charliecheung2/toastfish-mac
 ```
-
-项目使用 VS2019, .net 环境为 4.7.2.

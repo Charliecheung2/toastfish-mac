@@ -90,6 +90,7 @@ body {
   font-size: 15px;
   .question {
     margin: 20px 0 10px 0;
+    user-select: none;
   }
   .start {
     @include basic-btn(30px, 118px);
@@ -196,7 +197,7 @@ body {
   .question {
     font-size: 15px;
     font-weight: 500;
-    height: 60px;
+    height: 55px;
     width: 280px;
     padding-left: 3px;
     display: flex;
@@ -211,7 +212,7 @@ body {
   .answers {
     display: flex;
     height: 85px-32px;
-    padding-top: 5px;
+    padding-top: 0px;
     width: 280px;
     overflow: hidden;
     justify-content: space-around;

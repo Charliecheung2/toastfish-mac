@@ -21,13 +21,13 @@
 ### 基本流程
 
 1. 选择词库：
-   ![select]()
+   ![select](https://github.com/Charliecheung2/toastfish-mac/blob/master/img/select.png)
 2. 设置背诵单词数量：
-   ![start]()
+   ![start](https://github.com/Charliecheung2/toastfish-mac/blob/master/img/start.png)
 3. 开始记忆：
-   ![remember]()
+   ![remember](https://github.com/Charliecheung2/toastfish-mac/blob/master/img/remember.png)
 4. 背完之后会有测试：
-   ![choose]()
+   ![choose](https://github.com/Charliecheung2/toastfish-mac/blob/master/img/choose.png)
 
 ### 背诵记录
 

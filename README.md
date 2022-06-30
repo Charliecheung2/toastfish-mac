@@ -26,16 +26,19 @@
 </div>
 
 2. 设置背诵单词数量：
-
+<div align='center'>
 <img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/start.png" width = "400" alt="start" align=center />
+</div>
 
 3. 开始记忆：
-
+<div align='center'>
 <img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/remember.png" width = "400" alt="remember" align=center />
+</div>
 
 4. 背完之后会有测试：
-
+<div align='center'>
 <img src="https://github.com/Charliecheung2/toastfish-mac/blob/master/img/choose.png" width = "400" alt="choose" align=center />
+</div>
 
 ### 背诵记录
 
